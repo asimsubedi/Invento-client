@@ -19,7 +19,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         })
       });
 
-      console.log("SI");
+      console.log("Request Authed!");
 
       return next.handle(authReq);
 

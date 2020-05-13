@@ -24,6 +24,7 @@ export class AuthenticationService {
       }
     ).pipe(
       map((res) => {
+
         this.username = username;
         this.password = password;
         this.registerSuccessfulLogin(username, password);
@@ -31,6 +32,8 @@ export class AuthenticationService {
     );
   }
 
+  // This method will create Authorization Header as following:
+  // Authorization: Basic <Encoded username:password>
   createBasicAuthToken(username: String, password: String) {
     return 'Basic ' + window.btoa(username + ":" + password);
   }

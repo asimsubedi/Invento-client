@@ -27,9 +27,11 @@ export class LoginComponent implements OnInit {
 
 		if(this.loginSuccess) {
 			this.router.navigateByUrl('home');
-		}
+    }
+    
   }
 
+  // handles Login from the credentials user inputs from the form.
   handleLogin() {
 
     this.authenticationService.authenticationService(this.username, this.password).subscribe(
