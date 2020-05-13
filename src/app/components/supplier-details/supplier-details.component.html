@@ -1,0 +1,24 @@
+<h2>Supplier Details</h2>
+<hr>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card border-dark">
+            <div class="card-body">
+                <h4 class="card-title">{{supplier.name}}</h4>
+                <hr>
+                <div *ngIf="products?.length; else noProductTemplate">
+                    The products from {{supplier.name}} are:
+                    <ul class="list-group list-group-flush" *ngFor="let product of products">
+                        <a class="list-group-item" routerLink="/products/detail/{{product.id}}">{{product.name}}</a>
+                    </ul>
+                </div>
+                <ng-template #noProductTemplate>
+                    <p>No Products from {{supplier.name}} yet!</p>
+                    <a routerLink="/products/add" class="btn btn-primary btn-sm">Add Product + </a>
+                </ng-template>
+            </div>
+        </div>
+        <hr>
+        <a routerLink="/suppliers" class="btn btn-primary">&larr; Go To Supplier Lists.</a>
+    </div>
+</div>

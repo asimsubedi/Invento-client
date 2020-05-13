@@ -1,0 +1,24 @@
+<h2>Products in Inventory</h2>
+<hr>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>
+                <button class="btn btn-outline-danger btn-sm" (click)="deleteProduct(product.id)">DELETE</button>
+                <button class="btn btn-sm btn-outline-success" (click)="getProduct(product.id)">DETAIL</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<a routerLink="/home" class="btn btn-success">&larr; Go To Dashboard.</a>

@@ -1,0 +1,37 @@
+<!-- <table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Descriptoin</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price | currency:'USD'}}</td>
+            <td>{{product.quantity | currency:'USD'}}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" (click)="deleteProduct(product.id)">DELETE</button>
+                <button class="btn btn-primary btn-sm" (click)="getProduct(product.id)">DETAIL</button>
+            
+            </td>
+        </tr>
+    </tbody>
+</table> -->
+<h2>Our Suppliers</h2>
+<hr>
+<div class="card-columns">
+    <div class="card" *ngFor="let supplier of suppliers | async">
+        <div class="card-body">
+            <h5 class="card-title">{{supplier.name}}</h5>
+            <button class="btn btn-primary btn-sm" (click)="supplierDetails(supplier.id)">VIEW DETAILS</button>
+        </div>
+    </div>
+</div>
+<hr>
+<a routerLink="/home" class="btn btn-primary">&larr; Go To Dashboard.</a>

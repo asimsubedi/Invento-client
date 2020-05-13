@@ -1,0 +1,36 @@
+<h2>Welcome <span [hidden]="!isLoggedin"> {{loggedinUser}} </span> Invento Portal!</h2>
+<hr>
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card border-primary">
+            <div class="card-body">
+                <p class="lead">Do you want to View all our suppliers?</p>
+                <a class="btn btn-outline-primary" routerLink="/suppliers">View Suppliers &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border-success">
+            <div class="card-body">
+                <p class="lead">Do you want to View all our Products?</p>
+                <a class="btn btn-outline-success" routerLink="/products">View Products &rarr;</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card border-danger">
+            <div class="card-body">
+                <p class="lead">Do you want to Add a Product into Inventory?</p>
+                <a class="btn btn-outline-danger" routerLink="/products/add">Add Product +</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4" style="margin-top: 25px;">
+        <button *ngIf="isLoggedin " class="btn btn-sm btn-danger my-2 my-sm-0" (click)=doLogout()>LOGOUT</button>
+    </div>
+
+</div>
