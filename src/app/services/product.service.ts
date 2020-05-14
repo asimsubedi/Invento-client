@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from '../common/product';
@@ -28,7 +28,7 @@ export class ProductService {
   }
 
   deleteProduct(id: number):Observable<any> {
-    return this.httpClient.delete(`${this.BASE_URL}/${id}`);
+    return this.httpClient.delete(`${this.BASE_URL}/${id}`, { responseType: 'text' });
   }
 }
 

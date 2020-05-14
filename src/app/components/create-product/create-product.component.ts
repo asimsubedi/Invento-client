@@ -18,17 +18,18 @@ export class CreateProductComponent implements OnInit {
   suppliers: Observable<Supplier[]>;
   submitted = false;
 
-  constructor(private productService: ProductService,
-              private _supplierService: SupplierService,
-              private authService : AuthenticationService,
-              private router: Router) { }
+  constructor(
+    private productService: ProductService,
+    private _supplierService: SupplierService,
+    private authService : AuthenticationService,
+    private router: Router) { }
 
   ngOnInit(): void {
-    let isLoggedin = this.authService.isUserLoggedIn();
+    // let isLoggedin = this.authService.isUserLoggedIn();
 
-    if(!isLoggedin) {
-      this.router.navigateByUrl('login');
-    }
+    // if(!isLoggedin) {
+    //   this.router.navigateByUrl('login');
+    // }
     this.suppliers = this._supplierService.getSuppliers();
   }
 

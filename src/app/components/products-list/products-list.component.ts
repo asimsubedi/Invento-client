@@ -30,19 +30,19 @@ export class ProductsListComponent implements OnInit {
   }
 
   reloadData() {
+    
     this._productService.getProducts().subscribe(
       data => this.products = data
     );
+    
   };
 
   deleteProduct(id:number){
 
     this._productService.deleteProduct(id).subscribe(data => {
-      console.log(" is Deleted!!");
+      console.log(id + " is Deleted!!");
+      this.reloadData();
     }, error => console.log(error));
-
-    this.router.navigate(['home']);
-
   };
 
   getProduct(id:number) {

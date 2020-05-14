@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SelectControlValueAccessor } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
@@ -16,6 +16,9 @@ export class AuthenticationService {
   constructor( private http: HttpClient) { }
 
   authenticationService(username: String, password: String){
+
+    // const authHeader = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    // console.log(authHeader + " authheader is this!!")
 
     return this.http.get(
       `http://localhost:9889/api/v1/basicauth`,

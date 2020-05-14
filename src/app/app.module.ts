@@ -19,18 +19,6 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
-const routes: Routes =[
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'home', component:HomeComponent},
-  {path: 'login', component:LoginComponent},
-  {path: 'products', component:ProductsListComponent},
-  {path: 'products/add', component:CreateProductComponent},
-  {path: 'products/detail/:id', component:ProductDetailsComponent},
-  {path: 'suppliers', component:SupplierListComponent},
-  {path: 'suppliers/details/:id', component: SupplierDetailsComponent},
-  {path: '**', component: PageNotFoundComponent }
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +37,7 @@ const routes: Routes =[
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule
   ],
   providers: [
     ProductService,

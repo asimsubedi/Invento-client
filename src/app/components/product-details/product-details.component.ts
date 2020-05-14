@@ -13,14 +13,16 @@ export class ProductDetailsComponent implements OnInit {
   id:number;
   product: Product;
 
-  constructor( private route : ActivatedRoute,
-              private router: Router,
-              private productService: ProductService) { }
+  constructor(
+    private route : ActivatedRoute,
+    private router: Router,
+    private productService: ProductService) { }
 
   ngOnInit(): void {
 
     this.product = new Product();
-
+    // The route.snapshot is static image of the route information short after this component is created. 
+    // the paramMap is dictionary of route parameter values extracted i.e. :id
     this.id = this.route.snapshot.params['id'];
 
     this.productService.getProduct(this.id).subscribe(
@@ -29,6 +31,7 @@ export class ProductDetailsComponent implements OnInit {
         this.product = data;
       }, error => console.log(error)
     );
+
   }
 
 }
