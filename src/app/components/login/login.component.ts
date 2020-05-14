@@ -11,29 +11,29 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-  errorMessage = " Invalid Credentials";
+  errorMessage = "Invalid Credentials";
 
-  successMessage : string;
+  successMessage: string;
   invalidLogin = false;
   loginSuccess = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService
+  ) { }
 
   ngOnInit() {
     this.loginSuccess = this.authenticationService.isUserLoggedIn();
 
-		if(this.loginSuccess) {
-			this.router.navigateByUrl('home');
-    }
-    
+    if (this.loginSuccess) this.router.navigateByUrl('home')
+
   }
 
   // handles Login from the credentials user inputs from the form.
   handleLogin() {
 
+    // first check if empty fields
     this.authenticationService.authenticationService(this.username, this.password).subscribe(
       (result) => {
 
@@ -44,11 +44,10 @@ export class LoginComponent implements OnInit {
 
       }, () => {
 
-        console.log("Phew!!!! WHAT HAPPENED!!");
-
+        console.log("Ooo!! You Can't Access Sorry!!");
         this.invalidLogin = true;
         this.loginSuccess = false;
-        
+
       }
     )
   }

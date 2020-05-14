@@ -9,14 +9,17 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
+
 export class ProductsListComponent implements OnInit {
 
   products: Product[] ;
+  message: string;
 
   constructor(
     private _productService: ProductService,
     private authService : AuthenticationService,
-              private router: Router) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
 
@@ -26,10 +29,10 @@ export class ProductsListComponent implements OnInit {
       this.router.navigateByUrl('login');
     }
 
-    this.reloadData();
+    this.loadData();
   }
 
-  reloadData() {
+  loadData() {
     
     this._productService.getProducts().subscribe(
       data => this.products = data
@@ -40,8 +43,8 @@ export class ProductsListComponent implements OnInit {
   deleteProduct(id:number){
 
     this._productService.deleteProduct(id).subscribe(data => {
-      console.log(id + " is Deleted!!");
-      this.reloadData();
+      this.message = "Product with id " + id + " Deleted!!";
+      this.loadData();
     }, error => console.log(error));
   };
 

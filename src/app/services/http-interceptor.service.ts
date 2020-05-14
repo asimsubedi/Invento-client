@@ -8,25 +8,25 @@ import { Observable } from 'rxjs';
 })
 export class HttpInterceptorService implements HttpInterceptor {
 
-  constructor( private authenticationService: AuthenticationService) { }
+  constructor( private authService: AuthenticationService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(this.authenticationService.isUserLoggedIn()) {
+    if(this.authService.isUserLoggedIn()) {
       const authReq = req.clone ({
         headers: new HttpHeaders({
           'Content-Type' : 'application/json',
           "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
           'Access-Control-Allow-Origin': '*',
-          'Authorization': `Basic ${window.btoa(this.authenticationService.username + ":" + this.authenticationService.password)}`
+          'Authorization': this.authService.getAuthToken()
         })
       });
 
-      console.log("Request Authed!");
-
+      console.log("Auth Request");
       return next.handle(authReq);
 
     } else{
-      console.log("NADA");
+
+      console.log("Request Not Auth");
       return next.handle(req);
 
     }

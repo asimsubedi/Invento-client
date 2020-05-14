@@ -6,25 +6,28 @@
         <div class="card border-dark">
             <div class="card-body">
 
-                    <form (ngSubmit)="handleLogin()">
-                        <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="username">Username:</label>
-                                <input type="text" class="form-control" id="username" required [(ngModel)]="username" name="username"> 
-                            </div>
-
-                            <div class="from-group col-md-6">
-                                <label for="password">Password:</label>
-                                <input type="password" class="form-control" [(ngModel)]="password" name="password">
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <button class="btn btn-primary" type="submit">Login &rarr;</button>
-                            </div>
-
+                <form (ngSubmit)="handleLogin()">
+                    <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
+                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="username">Username:</label>
+                            <input type="text" ng-minlength="3" class="form-control" id="username" required
+                                [(ngModel)]="username" name="username">
+                                <div class="invalid-feedback" *ngIf="!username">Please Provide username!</div>
                         </div>
-                    </form>
+
+                        <div class="from-group col-md-6">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" [(ngModel)]="password" name="password">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <button class="btn btn-primary" type="submit">Login &rarr;</button>
+                        </div>
+
+                    </div>
+                </form>
 
             </div>
         </div>

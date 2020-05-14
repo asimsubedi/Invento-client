@@ -25,7 +25,6 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     this.title = 'Invento';
     this.isLoggedin = this.authService.isUserLoggedIn();
-    this.loggedinUser = this.authService.getLoggednUserName();
   }
 
   // try implement this on navbar component

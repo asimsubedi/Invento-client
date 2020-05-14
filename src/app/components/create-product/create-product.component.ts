@@ -25,11 +25,12 @@ export class CreateProductComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    // let isLoggedin = this.authService.isUserLoggedIn();
+    let isLoggedin = this.authService.isUserLoggedIn();
 
-    // if(!isLoggedin) {
-    //   this.router.navigateByUrl('login');
-    // }
+    if(!isLoggedin) {
+      this.router.navigateByUrl('login');
+    }
+
     this.suppliers = this._supplierService.getSuppliers();
   }
 
@@ -39,8 +40,6 @@ export class CreateProductComponent implements OnInit {
   }
 
   save() {
-
-    console.log(typeof(+this.product.supplier));
     this.productService.createProduct(this.product, +this.product.supplier).
       subscribe(
         data => console.log(data),
