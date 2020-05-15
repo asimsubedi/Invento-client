@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/common/product';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-products-list',
@@ -16,35 +15,27 @@ export class ProductsListComponent implements OnInit {
   message: string;
 
   constructor(
-    private _productService: ProductService,
-    private authService : AuthenticationService,
+    private productService: ProductService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-
-    let isLoggedin = this.authService.isUserLoggedIn();
-
-    if(!isLoggedin) {
-      this.router.navigateByUrl('login');
-    }
-
-    this.loadData();
+    this.loadProductData();
   }
 
-  loadData() {
-    
-    this._productService.getProducts().subscribe(
-      data => this.products = data
+  loadProductData() {
+    this.productService.getProducts().subscribe(
+      data => {
+        this.products = data
+      }
     );
     
   };
 
   deleteProduct(id:number){
-
-    this._productService.deleteProduct(id).subscribe(data => {
+    this.productService.deleteProduct(id).subscribe(data => {
       this.message = "Product with id " + id + " Deleted!!";
-      this.loadData();
+      this.loadProductData();
     }, error => console.log(error));
   };
 

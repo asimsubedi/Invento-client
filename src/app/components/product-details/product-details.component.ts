@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/common/product';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-product-details',
@@ -16,7 +17,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route : ActivatedRoute,
     private router: Router,
-    private productService: ProductService) { }
+    private productService: ProductService
+  ) { }
 
   ngOnInit(): void {
 
@@ -27,7 +29,6 @@ export class ProductDetailsComponent implements OnInit {
 
     this.productService.getProduct(this.id).subscribe(
       data => {
-        console.log(data);
         this.product = data;
       }, error => console.log(error)
     );

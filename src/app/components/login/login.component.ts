@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { User } from 'src/app/common/user';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,10 @@ export class LoginComponent implements OnInit {
   successMessage: string;
   invalidLogin = false;
   loginSuccess = false;
+
+  
+  public userdata : User;
+  public userdatajson : any
 
   constructor(
     private route: ActivatedRoute,
@@ -37,10 +42,17 @@ export class LoginComponent implements OnInit {
     this.authenticationService.authenticationService(this.username, this.password).subscribe(
       (result) => {
 
+        console.log(result + " .. Result Data type : " + typeof(JSON.stringify(result)) )
+        this.userdata = result;
+
+        console.log(result["name"])
+
         this.invalidLogin = false;
         this.loginSuccess = true;
         this.successMessage = 'Login Success';
         this.router.navigate(['/home']);
+
+        this.authenticationService.registerSuccessfulLogin(this.username, this.password);
 
       }, () => {
 

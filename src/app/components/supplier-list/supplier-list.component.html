@@ -26,7 +26,7 @@
 <h2>Our Suppliers</h2>
 <hr>
 <div class="card-columns">
-    <div class="card" *ngFor="let supplier of suppliers | async">
+    <div class="card" *ngFor="let supplier of suppliers">
         <div class="card-body">
             <h5 class="card-title">{{supplier.name}}</h5>
             <button class="btn btn-primary btn-sm" (click)="supplierDetails(supplier.id)">VIEW DETAILS</button>

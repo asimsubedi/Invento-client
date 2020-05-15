@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SelectControlValueAccessor } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { User } from '../common/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,26 +17,15 @@ export class AuthenticationService {
 
   constructor( private http: HttpClient) { }
 
-  authenticationService(username: String, password: String){
-
-    // const authHeader = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-    // console.log(authHeader + " authheader is this!!")
+  authenticationService(username: String, password: String): Observable<any>{
 
     return this.http.get(
       `http://localhost:9889/api/v1/basicauth`,
       { headers:
-        { Authorization: this.createBasicAuthToken(username, password) }
+        { Authorization: this.createBasicAuthToken(username, password),
+          responseType: 'json' }
       }
-    ).pipe(
-      map((res) => {
-
-        this.username = username;
-        this.password = password;
-        this.registerSuccessfulLogin(username, password);
-
-      })
-    );
-
+    )
 
   }
 
