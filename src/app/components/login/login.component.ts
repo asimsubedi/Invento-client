@@ -42,10 +42,10 @@ export class LoginComponent implements OnInit {
     this.authenticationService.authenticationService(this.username, this.password).subscribe(
       (result) => {
 
-        console.log(result + " .. Result Data type : " + typeof(JSON.stringify(result)) )
-        this.userdata = result;
+        this.userdatajson = result;
+        console.log(this.userdatajson); // now consume data like authority, username, ip from this data
 
-        console.log(result["name"])
+        console.log(this.userdatajson.name + " " + this.userdatajson.details.remoteAddress);
 
         this.invalidLogin = false;
         this.loginSuccess = true;
